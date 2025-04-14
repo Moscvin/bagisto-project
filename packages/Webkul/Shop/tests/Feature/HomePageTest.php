@@ -82,10 +82,10 @@ it('displays navigation buttons when the customer is logged in', function () {
 it('should returns the home page of the store', function () {
     get(route('shop.home.index'))
         ->assertOk()
-        ->assertSeeText('The game with our new additions!')
-        ->assertSeeText('Our Collections')
-        ->assertSeeText('Get Ready for our new Bold Collections!')
-        ->assertSeeText('Get UPTO 40% OFF on your 1st order SHOP NOW');
+        ->assertSeeText('Noi achizitii')
+        ->assertSeeText('Colectiile Noastre')
+        ->assertSeeText('Fii gata pentru noi achizitii!')
+        ->assertSeeText('40% acum doar');
 });
 
 it('should returns the search page of the products', function () {

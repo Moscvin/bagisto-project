@@ -1,29 +1,64 @@
+# 📦 bagisto project setup
 
+## 🔧 cerințe
 
-Accesează containerul tău Laravel:
+-   docker
+-   docker compose
 
-bash
-Copy
-Edit
+## 🚀 pași de instalare
+
+1. **clonează proiectul:**
+
+git clone https://github.com/<utilizator>/<repo>.git
+cd <repo>
+pornește serviciile cu docker compose:
+
+docker-compose up -d --build
+accesează containerul laravel:
+
 docker-compose exec laravel.test bash
-Apoi rulează:
+instalează dependențele php (composer):
 
-bash
-Copy
-Edit
+composer install
+execută migrarea bazei de date:
+
 php artisan migrate
-Dacă Bagisto are și seedere speciale pentru canale, rulează și:
+(opțional) rulează seederele:
 
-bash
-Copy
-Edit
-php artisan db:seed 2. (Opțional) Reinstalează Bagisto dacă e prima dată
-Dacă e prima dată când rulezi proiectul sau ai o bază de date goală:
+php artisan db:seed
+(recomandat dacă e prima instalare) instalează bagisto complet:
 
-bash
-Copy
-Edit
 php artisan bagisto:install
-Asta va crea automat:
+această comandă va crea automat:
 
-admin user
+utilizator admin
+
+tabelul channels
+
+categorii, produse, etc.
+
+🔗 acces
+website: http://localhost:8000
+
+admin: http://localhost:8000/admin
+
+🐳 servicii docker
+laravel.test: aplicația bagisto
+
+mysql: baza de date mysql
+
+redis: cache server
+
+mailpit: server local pentru testarea emailurilor (accesibil pe http://localhost:8025)
+
+📂 structura
+.env: configurația aplicației
+
+dockerfile: imaginea laravel cu apache și php 8.2
+
+docker-compose.yml: orchestrarea serviciilor
+
+📮 mailpit (testare e-mailuri)
+web ui: http://localhost:8025
+
+port smtp: 1025
