@@ -34,11 +34,11 @@ class CategoryRepository extends Repository
         foreach ($params as $key => $value) {
             switch ($key) {
                 case 'name':
-                    $queryBuilder->where('category_translations.name', 'like', '%' . urldecode($value) . '%');
+                    $queryBuilder->where('category_translations.name', 'like', '%'.urldecode($value).'%');
 
                     break;
                 case 'description':
-                    $queryBuilder->where('category_translations.description', 'like', '%' . urldecode($value) . '%');
+                    $queryBuilder->where('category_translations.description', 'like', '%'.urldecode($value).'%');
 
                     break;
                 case 'status':
@@ -238,7 +238,7 @@ class CategoryRepository extends Repository
     {
         if (isset($data[$type])) {
             foreach ($data[$type] as $imageId => $image) {
-                $file = $type . '.' . $imageId;
+                $file = $type.'.'.$imageId;
 
                 if (request()->hasFile($file)) {
                     if ($category->{$type}) {
@@ -249,7 +249,7 @@ class CategoryRepository extends Repository
 
                     $image = $manager->make(request()->file($file))->encode('jpg', 80);
 
-                    $category->{$type} = 'category/' . $category->id . '/' . Str::random(40) . '.jpg';
+                    $category->{$type} = 'category/'.$category->id.'/'.Str::random(40).'.jpg';
 
                     Storage::put($category->{$type}, $image);
 

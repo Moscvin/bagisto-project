@@ -33,7 +33,7 @@ class ProductMediaRepository extends Repository
      */
     public function getProductDirectory($product): string
     {
-        return 'product/' . $product->id;
+        return 'product/'.$product->id;
     }
 
     /**
@@ -103,7 +103,7 @@ class ProductMediaRepository extends Repository
 
         $position = 0;
 
-        if (!empty($data[$uploadFileType]['files'])) {
+        if (! empty($data[$uploadFileType]['files'])) {
             foreach ($data[$uploadFileType]['files'] as $indexOrModelId => $file) {
                 if ($file instanceof UploadedFile) {
                     // Validate allowed image types
@@ -111,7 +111,7 @@ class ProductMediaRepository extends Repository
                     $fileMimeType = $file->getMimeType();
 
                     if (Str::contains($fileMimeType, 'image')) {
-                        if (!in_array($fileMimeType, $allowedMimeTypes)) {
+                        if (! in_array($fileMimeType, $allowedMimeTypes)) {
                             continue; // Skip unsupported image types
                         }
 
@@ -131,7 +131,7 @@ class ProductMediaRepository extends Repository
                             $image->encode('png'); // Lossless for PNG
                         }
 
-                        $path = $this->getProductDirectory($product) . '/' . Str::random(40) . '.' . $extension;
+                        $path = $this->getProductDirectory($product).'/'.Str::random(40).'.'.$extension;
 
                         Storage::put($path, (string) $image);
                     } else {
@@ -160,7 +160,7 @@ class ProductMediaRepository extends Repository
 
         // Delete remaining previous files
         foreach ($previousIds as $indexOrModelId) {
-            if (!$model = $this->find($indexOrModelId)) {
+            if (! $model = $this->find($indexOrModelId)) {
                 continue;
             }
 
@@ -168,6 +168,7 @@ class ProductMediaRepository extends Repository
             $this->delete($indexOrModelId);
         }
     }
+
     /**
      * Resolve file type query builder.
      *
